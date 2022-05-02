@@ -7,7 +7,15 @@ const popupDisplay = document.querySelector('.popupContainer');
 const popupClose = document.querySelector('#closePopup');
 const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
+const carousel = document.querySelector('.carousel');
 
+
+
+//image array
+let imgArray = ['https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+'https://images.unsplash.com/photo-1443884590026-2e4d21aee71c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=843&q=80',
+'https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
+'https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80']
 //hamburger button********************
 navBtn.addEventListener('click',()=>{
     navMenu.classList.toggle('active');
@@ -66,3 +74,13 @@ displayMode.addEventListener('click',()=>{
     document.body.classList.toggle('active');
     displayMode.classList.toggle('active');
 })
+//Carousel********************* 
+let imageIndex=0;
+function changeImage(){
+    carousel.style.backgroundImage=`url(${imgArray[imageIndex]})`
+    imageIndex++;
+    if(imageIndex>imgArray.length-1)
+        imageIndex=0;
+}
+
+setInterval(changeImage,3000);

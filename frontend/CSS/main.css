@@ -62,3 +62,18 @@ nav{
     cursor: pointer;
     color: rgb(0, 0, 0);
 }
+
+
+#notification{
+    position: fixed;
+    bottom: 10px;
+    right:10px;
+}
+#notification div{
+    background-color: rgb(244, 123, 42);
+    color: white;
+    margin: 1rem 0;
+    padding: 2rem;
+    border-radius: 10px;
+    transition: all,0.3s;
+}

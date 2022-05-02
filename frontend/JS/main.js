@@ -5,6 +5,7 @@ const test=document.querySelector('#test');
 const autoText = document.querySelector('#autoText p');
 const popupDisplay = document.querySelector('.popupContainer');
 const popupClose = document.querySelector('#closePopup');
+const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
 
 //hamburger button********************
@@ -58,4 +59,10 @@ test.addEventListener('click',()=>{
 
 popupClose.addEventListener('click',()=>{
     popupDisplay.classList.toggle('active');
+})
+
+//DarkMode**********************
+displayMode.addEventListener('click',()=>{
+    document.body.classList.toggle('active');
+    displayMode.classList.toggle('active');
 })

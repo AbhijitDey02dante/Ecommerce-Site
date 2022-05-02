@@ -1,8 +1,10 @@
 const navBtn=document.querySelector('#navButton');
 const navMenu=document.querySelector('#navMenu');
 const notification=document.querySelector('#notification');
-// const test=document.querySelector('#test');
+const test=document.querySelector('#test');
 const autoText = document.querySelector('#autoText p');
+const popupDisplay = document.querySelector('.popupContainer');
+const popupClose = document.querySelector('#closePopup');
 // autoText.innerText='0';
 
 //hamburger button********************
@@ -47,3 +49,13 @@ function writeText(){
 }
 
 setInterval(writeText,100);
+
+//popup ************************
+
+test.addEventListener('click',()=>{
+    popupDisplay.classList.toggle('active');
+})
+
+popupClose.addEventListener('click',()=>{
+    popupDisplay.classList.toggle('active');
+})

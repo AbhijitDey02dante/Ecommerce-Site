@@ -13,6 +13,17 @@ nav{
     position: fixed;
     top:0;
 }
+
+.btnOrange{
+    color: white;
+    background-color: rgb(244, 123, 42);
+    border-radius: 5px;
+    border: none;
+}
+.btnOrange:hover{
+    color:black;
+}
+
 #navButton{
     position: fixed;
     top:2rem;
@@ -20,14 +31,7 @@ nav{
     font-size: 1.8rem;
     height:3rem;
     width:2rem;
-    color: white;
-    background-color: rgb(244, 123, 42);
-    border: none;
-    border-radius: 5px;
     transition: all, 0.5s;
-}
-#navButton:hover{
-    color: black;
 }
 #navButton.active{
     transform: translateX(-92px);
@@ -87,4 +91,36 @@ nav{
     color:rgb(244, 123, 42);
     font-size: 1.5rem;
     text-decoration: underline;
+}
+
+.popupContainer{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    background-color: rgba(0,0,0,0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.popupContainer.active{
+    display: flex;
+}
+
+.popupCard{
+    background-color: white;
+    padding:1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px black;
+    position: relative;
+}
+#closePopup{
+    position: absolute;
+    top:5px;
+    right:5px;
+    font-size: 20px;
+    border-radius: 5px;
 }

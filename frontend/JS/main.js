@@ -1,9 +1,11 @@
 const navBtn=document.querySelector('#navButton');
 const navMenu=document.querySelector('#navMenu');
 const notification=document.querySelector('#notification');
-const test=document.querySelector('#test');
+// const test=document.querySelector('#test');
+const autoText = document.querySelector('#autoText p');
+// autoText.innerText='0';
 
-//hamburger button
+//hamburger button********************
 navBtn.addEventListener('click',()=>{
     navMenu.classList.toggle('active');
     navBtn.classList.toggle('active');
@@ -17,11 +19,10 @@ navBtn.addEventListener('click',()=>{
     }
 })
 
-//notification message
-test.addEventListener('click',()=>{
-    notificationMessage("This is the message");
-})
-
+//notification message***************
+// test.addEventListener('click',()=>{
+//     notificationMessage("This is the message");
+// })
 function notificationMessage(message){
     const notif=document.createElement('div');
     notif.innerText=message;
@@ -32,3 +33,17 @@ function notificationMessage(message){
         notif.remove();
     },3000);
 }
+
+//autoText********************
+let index=0;
+let text="This is a dummy ecommerce site";
+
+function writeText(){
+    autoText.innerText=text.slice(0,index);
+
+    index++;
+    if(index>text.length)
+        index=0;
+}
+
+setInterval(writeText,100);

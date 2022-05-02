@@ -63,7 +63,6 @@ nav{
     color: rgb(0, 0, 0);
 }
 
-
 #notification{
     position: fixed;
     bottom: 10px;
@@ -76,4 +75,16 @@ nav{
     padding: 2rem;
     border-radius: 10px;
     transition: all,0.3s;
+}
+
+#autoText{
+    position: fixed;
+    top: 80px;
+    left:20px;
+}
+#autoText p{
+    padding:0 20px;
+    color:rgb(244, 123, 42);
+    font-size: 1.5rem;
+    text-decoration: underline;
 }

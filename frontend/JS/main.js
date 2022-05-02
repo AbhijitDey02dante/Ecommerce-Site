@@ -8,14 +8,16 @@ const popupClose = document.querySelector('#closePopup');
 const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
 const carousel = document.querySelector('.carousel');
+const zoomCard = document.querySelector('.zoomCard');
+const zoomImg = document.querySelector('.zoomCard img');
 
 
 
 //image array
 let imgArray = ['https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
 'https://images.unsplash.com/photo-1443884590026-2e4d21aee71c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=843&q=80',
-'https://images.unsplash.com/photo-1578916171728-46686eac8d58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80',
-'https://images.unsplash.com/photo-1605371924599-2d0365da1ae0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80']
+'https://images.unsplash.com/photo-1580674287405-80cd77a2fee2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+'https://images.unsplash.com/photo-1502160348486-995f41fa55b1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80']
 //hamburger button********************
 navBtn.addEventListener('click',()=>{
     navMenu.classList.toggle('active');
@@ -84,3 +86,17 @@ function changeImage(){
 }
 
 setInterval(changeImage,3000);
+
+//zoom image*********************
+zoomCard.addEventListener('mousemove',(e)=>{
+    let x=e.clientX - e.target.offsetLeft;
+    let y=e.clientY - e.target.offsetTop;
+
+    zoomImg.style.transformOrigin = `${x}px ${y}px`;
+    zoomImg.style.transform = `scale(2)`;
+})
+
+zoomCard.addEventListener('mouseleave',()=>{
+    zoomImg.style.transformOrigin = `center center`;
+    zoomImg.style.transform = `scale(1)`;
+})

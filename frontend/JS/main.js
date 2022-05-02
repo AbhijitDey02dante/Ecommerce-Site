@@ -8,8 +8,8 @@ const popupClose = document.querySelector('#closePopup');
 const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
 const carousel = document.querySelector('.carousel');
-const zoomCard = document.querySelector('.zoomCard');
-const zoomImg = document.querySelector('.zoomCard img');
+const zoomCard = document.querySelectorAll('.zoomCard');
+const zoomImg = document.querySelectorAll('.zoomCard img');
 
 
 
@@ -24,7 +24,7 @@ navBtn.addEventListener('click',()=>{
     navBtn.classList.toggle('active');
     if(navBtn.classList.contains('active'))
     {
-        navBtn.innerText='X';
+        navBtn.innerText='×';
     }
     else
     {
@@ -88,15 +88,31 @@ function changeImage(){
 setInterval(changeImage,3000);
 
 //zoom image*********************
-zoomCard.addEventListener('mousemove',(e)=>{
-    let x=e.clientX - e.target.offsetLeft;
-    let y=e.clientY - e.target.offsetTop;
+// zoomCard.addEventListener('mousemove',(e)=>{
+//     let x=e.clientX - e.target.offsetLeft;
+//     let y=e.clientY - e.target.offsetTop;
 
-    zoomImg.style.transformOrigin = `${x}px ${y}px`;
-    zoomImg.style.transform = `scale(2)`;
-})
+//     zoomImg.style.transformOrigin = `${x}px ${y}px`;
+//     zoomImg.style.transform = `scale(2)`;
+// })
 
-zoomCard.addEventListener('mouseleave',()=>{
-    zoomImg.style.transformOrigin = `center center`;
-    zoomImg.style.transform = `scale(1)`;
-})
+// zoomCard.addEventListener('mouseleave',()=>{
+//     zoomImg.style.transformOrigin = `center center`;
+//     zoomImg.style.transform = `scale(1)`;
+// })
+for(let i=0;i<zoomCard.length;i++){
+    zoomCard[i].addEventListener('mousemove',(e)=>{
+            // let x=e.clientX - zoomCard[i].offsetLeft;
+            // let y=e.clientY - zoomCard[i].offsetTop;
+        
+            // zoomImg[i].style.transformOrigin = `${x}px ${y}px`;
+            zoomImg[i].style.transform = `scale(2)`;
+            zoomImg[i].style.transition = `transform 0.5s`;
+    })
+}
+for(let i=0;i<zoomCard.length;i++){
+    zoomCard[i].addEventListener('mouseleave',()=>{
+        // zoomImg[i].style.transformOrigin = `center center`;
+        zoomImg[i].style.transform = `scale(1)`;
+    })
+}

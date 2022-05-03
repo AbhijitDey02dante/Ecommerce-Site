@@ -67,14 +67,14 @@ nav{
 #navButton{
     position: fixed;
     top:0.5rem;
-    right:2rem;
+    right:0.5rem;
     font-size: 1.8rem;
     height:3rem;
     width:2rem;
     transition: all, 0.5s;
 }
 #navButton.active{
-    transform: translateX(-11.5rem);
+    transform: translateX(-13rem);
 }
 
 .sideNav{
@@ -208,7 +208,7 @@ nav{
     margin: auto;
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transform-origin: center center;
 }
 .itemCard h2,p{
@@ -217,7 +217,7 @@ nav{
 }
 .itemCard{
     width:90%;
-    height:450px;
+    height:500px;
     margin:20px auto;
     /* background-color: purple; */
     padding-bottom: 20px;

@@ -22,7 +22,6 @@ if(localStorage.length>0){
 }
 
 
-
 //image array
 let imgArray = ['https://images.unsplash.com/photo-1575663620136-5ebbfcc2c597?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
 'https://images.unsplash.com/photo-1443884590026-2e4d21aee71c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=843&q=80',
@@ -41,6 +40,49 @@ navBtn.addEventListener('click',()=>{
         navBtn.innerText='☰';
     }
 })
+
+document.addEventListener('DOMContentLoaded',()=>{ 
+    axios.get("http://localhost:3000/products")
+    .then(result=>{
+        result.data.forEach(product => {
+            const itemCard=document.createElement('div');
+            itemCard.classList.add('itemCard');
+            itemCard.id=product.id;
+
+            const zoomCard=document.createElement('div');
+            zoomCard.classList.add('zoomCard');
+            const img=document.createElement('img');
+            img.src=product.imageUrl;
+            zoomCard.appendChild(img);
+            itemCard.append(zoomCard);
+
+            const h2=document.createElement('h2');
+            h2.innerText=product.title;
+            itemCard.appendChild(h2);
+
+            const p=document.createElement('p');
+            p.innerText=product.description;
+            itemCard.appendChild(p);
+
+            const span=document.createElement('span');
+            span.innerText=`Rs. ${product.price}`;
+            itemCard.appendChild(span);
+
+            const button=document.createElement('button');
+            button.classList.add('btn');
+            button.innerText='Add to cart';
+            itemCard.appendChild(button);
+
+            itemContainer.appendChild(itemCard);
+        })
+    })
+    .catch(error=>{
+        popupDisplay.classList.toggle('active');
+        console.log(error);
+    });
+})
+
+
 
 //notification message***************
 // test.addEventListener('click',()=>{

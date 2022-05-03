@@ -25,7 +25,7 @@ else{
 
         const div2=document.createElement('div');
         const p1=document.createElement('p');
-        p1.innerText=`Rs. ${product.price}`
+        p1.innerText=product.price;
         div2.appendChild(p1);
         cartItemCard.appendChild(div2);
         

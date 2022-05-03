@@ -33,7 +33,7 @@
 .cartItemCard div img{
     width:40%;
     height: 15vw;
-    object-fit: cover;
+    object-fit: contain;
 }
 .cartItemCard div h2{
     margin: 0;

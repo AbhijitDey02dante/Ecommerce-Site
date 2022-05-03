@@ -171,12 +171,16 @@ if(itemContainer){
                 imageUrl: childElement[0].children[0].src,
                 title: childElement[1].innerText,
                 description: childElement[2].innerText,
-                price: childElement[3].innerText
+                price: +childElement[3].innerText.replace('Rs. ','')
             }
-            localStorage.setItem(prodId,JSON.stringify(obj));
-            cartItem.innerText=localStorage.length;
-            cartItem.classList.add('cartItem');
-            notificationMessage(`Item ${childElement[1].innerText} has been added to your cart`);
+            // localStorage.setItem(prodId,JSON.stringify(obj));
+            // cartItem.innerText=localStorage.length;
+            // cartItem.classList.add('cartItem');
+            axios.post("http://localhost:3000/cart",obj)
+            .then(()=>{
+                notificationMessage(`Item ${childElement[1].innerText} has been added to your cart`);
+            })
+            .catch(error=>console.log(error));
         }
     })
 }

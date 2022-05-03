@@ -41,6 +41,7 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+  // console.log(req.user.getCart());
   req.user
   .getCart()
   .then(cart => {
@@ -58,7 +59,7 @@ exports.getCart = (req, res, next) => {
 };
 
 exports.postCart = (req,res,next) => {
-  const prodId = req.body.productId;
+  const prodId = req.body.id;
   let fetchedCart;
   let newQuantity = 1;
   req.user

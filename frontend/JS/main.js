@@ -9,6 +9,17 @@ const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
 const carousel = document.querySelector('.carousel');
 const itemContainer = document.querySelector('#itemContainer');
+const cartItem = document.querySelector('#cartValue');
+
+if(sessionStorage.getItem('mode'))
+{
+    document.body.classList.toggle('active');
+    displayMode.classList.toggle('active');
+}
+if(localStorage.length>0){
+    cartItem.innerText=localStorage.length;
+    cartItem.classList.add('cartItem');
+}
 
 
 
@@ -77,6 +88,10 @@ popupClose.addEventListener('click',()=>{
 displayMode.addEventListener('click',()=>{
     document.body.classList.toggle('active');
     displayMode.classList.toggle('active');
+    if(sessionStorage.getItem('mode'))
+        sessionStorage.removeItem('mode');
+    else
+        sessionStorage.setItem('mode','on');
 })
 //Carousel********************* 
 if(carousel){
@@ -117,7 +132,9 @@ if(itemContainer){
                 price: childElement[3].innerText
             }
             localStorage.setItem(prodId,JSON.stringify(obj));
-            notificationMessage(`Item ${element.id} has been added to your cart`);
+            cartItem.innerText=localStorage.length;
+            cartItem.classList.add('cartItem');
+            notificationMessage(`Item ${childElement[1].innerText} has been added to your cart`);
         }
     })
 }

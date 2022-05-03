@@ -12,9 +12,15 @@ body{
     border-radius: 10px;
 }
 .container{
-    padding:0 5rem;
+    padding:0;
 }
 .container div p{
     text-align: justify;
     text-justify: inter-word;
+}
+
+@media screen and (min-width: 599px) {
+    .container{
+        padding: 0 5rem;
+    }
 }

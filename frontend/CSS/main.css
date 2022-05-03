@@ -249,6 +249,11 @@ nav{
     padding:0.5rem 1rem;
     border-radius: 30px;
 }
+.cartItem{
+    background-color: red;
+    padding:2px 5px;
+    border-radius: 50%;
+}
 
 
 

@@ -8,8 +8,7 @@ const popupClose = document.querySelector('#closePopup');
 const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
 const carousel = document.querySelector('.carousel');
-const zoomCard = document.querySelectorAll('.zoomCard');
-const zoomImg = document.querySelectorAll('.zoomCard img');
+const itemContainer = document.querySelector('#itemContainer');
 
 
 
@@ -48,24 +47,27 @@ function notificationMessage(message){
 }
 
 //autoText********************
-let index=0;
-let text="This is a dummy ecommerce site";
-
-function writeText(){
-    autoText.innerText=text.slice(0,index);
-
-    index++;
-    if(index>text.length)
-        index=0;
+if(autoText){
+    let index=0;
+    let text=autoText.innerText;
+    
+    function writeText(){
+        autoText.innerText=text.slice(0,index);
+    
+        index++;
+        if(index>text.length)
+            index=0;
+    }
+    
+    setInterval(writeText,100);
 }
 
-setInterval(writeText,100);
-
 //popup ************************
-
-test.addEventListener('click',()=>{
-    popupDisplay.classList.toggle('active');
-})
+if(test){
+    test.addEventListener('click',()=>{
+        popupDisplay.classList.toggle('active');
+    })
+}
 
 popupClose.addEventListener('click',()=>{
     popupDisplay.classList.toggle('active');
@@ -77,42 +79,46 @@ displayMode.addEventListener('click',()=>{
     displayMode.classList.toggle('active');
 })
 //Carousel********************* 
-let imageIndex=0;
-function changeImage(){
-    carousel.style.backgroundImage=`url(${imgArray[imageIndex]})`
-    imageIndex++;
-    if(imageIndex>imgArray.length-1)
-        imageIndex=0;
+if(carousel){
+    let imageIndex=0;
+    function changeImage(){
+        carousel.style.backgroundImage=`url(${imgArray[imageIndex]})`
+        imageIndex++;
+        if(imageIndex>imgArray.length-1)
+            imageIndex=0;
+    }
+    
+    setInterval(changeImage,3000);
 }
-
-setInterval(changeImage,3000);
 
 //zoom image*********************
-// zoomCard.addEventListener('mousemove',(e)=>{
-//     let x=e.clientX - e.target.offsetLeft;
-//     let y=e.clientY - e.target.offsetTop;
+if(itemContainer){
+    itemContainer.addEventListener('mousemove',(e)=>{
+        if(e.target.tagName==='IMG'){
+            e.target.style.transform = `scale(2)`;
+            e.target.style.transition = `transform 0.5s`;
+            e.target.addEventListener('mouseleave',element=>{
+                element.target.style.transform=`scale(1)`;
+            })
+        }
+    })
 
-//     zoomImg.style.transformOrigin = `${x}px ${y}px`;
-//     zoomImg.style.transform = `scale(2)`;
-// })
-
-// zoomCard.addEventListener('mouseleave',()=>{
-//     zoomImg.style.transformOrigin = `center center`;
-//     zoomImg.style.transform = `scale(1)`;
-// })
-for(let i=0;i<zoomCard.length;i++){
-    zoomCard[i].addEventListener('mousemove',(e)=>{
-            // let x=e.clientX - zoomCard[i].offsetLeft;
-            // let y=e.clientY - zoomCard[i].offsetTop;
-        
-            // zoomImg[i].style.transformOrigin = `${x}px ${y}px`;
-            zoomImg[i].style.transform = `scale(2)`;
-            zoomImg[i].style.transition = `transform 0.5s`;
+    itemContainer.addEventListener('click',(e)=>{
+        if(e.target.tagName==='BUTTON')
+        {
+            const element=e.target.parentElement;
+            const prodId=element.id;
+            const childElement=element.children;
+            const obj={
+                id:prodId,
+                imageUrl: childElement[0].children[0].src,
+                title: childElement[1].innerText,
+                description: childElement[2].innerText,
+                price: childElement[3].innerText
+            }
+            localStorage.setItem(prodId,JSON.stringify(obj));
+            notificationMessage(`Item ${element.id} has been added to your cart`);
+        }
     })
 }
-for(let i=0;i<zoomCard.length;i++){
-    zoomCard[i].addEventListener('mouseleave',()=>{
-        // zoomImg[i].style.transformOrigin = `center center`;
-        zoomImg[i].style.transform = `scale(1)`;
-    })
-}
+

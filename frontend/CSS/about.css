@@ -1,0 +1,20 @@
+body{
+    text-align: center;
+}
+#displayPic{
+    width:20rem;
+    height:20rem;
+    border-radius: 50%;
+    transition: border-radius 0.5s;
+}
+
+#displayPic:hover{
+    border-radius: 10px;
+}
+.container{
+    padding:0 5rem;
+}
+.container div p{
+    text-align: justify;
+    text-justify: inter-word;
+}

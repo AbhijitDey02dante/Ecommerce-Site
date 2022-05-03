@@ -11,9 +11,36 @@ body{
     font-family: sans-serif;
     transition: background 0.3s,color 0.3s;
 }
+h2{
+    font-size: 2rem;
+    padding-left: 4rem;
+    padding-top: 1rem;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
 body.active{
     color:white;
     background-color: rgb(26, 26, 26);
+}
+.navBar{
+    background-color: rgb(244, 123, 42);
+    width: 100%;
+    height:4rem;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.navBar ul{
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navBar ul li{
+    margin:0 2rem;
 }
 nav{
     position: fixed;
@@ -23,8 +50,8 @@ nav{
 .carousel h1{
     margin: 0;
     color: white;
-    font-size:50vw4rem;
-    padding: 20px 20px;
+    font-size:3.5rem;
+    padding: 60px 20px 20px 20px;
 }
 
 .btnOrange{
@@ -39,7 +66,7 @@ nav{
 
 #navButton{
     position: fixed;
-    top:2rem;
+    top:0.5rem;
     right:2rem;
     font-size: 1.8rem;
     height:3rem;
@@ -98,13 +125,13 @@ nav{
 
 #autoText{
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left:20px;
 }
 #autoText p{
     padding:0 20px;
     color:rgb(244, 123, 42);
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-decoration: underline;
 }
 
@@ -152,6 +179,9 @@ nav{
     color: black;
     background-color: white;
 }
+#homeCarousel .imgContainer{
+    height: 400px;
+}
 
 .carousel{
     position: relative;
@@ -192,7 +222,8 @@ nav{
     /* background-color: purple; */
     padding-bottom: 20px;
     text-align: center;
-    box-shadow: 0 0 1px rgba(0,0,0,0.7);
+    box-shadow: 0 0 2px rgba(0,0,0,1);
+    border:1px solid white;
     display: block;
     position: relative;
 }
@@ -222,9 +253,12 @@ nav{
 
 
 
-@media screen and (min-width: 799px) {
+@media screen and (min-width: 599px) {
     .itemCard{
         width:45%;
+    }
+    .navBar{
+        display: flex;
     }
 }
 

@@ -1,13 +1,17 @@
+// const res = require("express/lib/response");
+
 const cartMessage = document.querySelector('#cartMessage');
 const cartItemContainer = document.querySelector('#cartItem');
-if(localStorage.length<=0)
-    cartMessage.innerText='You do not have any items in your cart..........';
-else{
-    for(let i=0;i<localStorage.length;i++){
-        cartItemContainer.style.display='block';
 
-        const product=JSON.parse(localStorage.getItem(localStorage.key(i)));
-        
+axios.get("http://localhost:3000/cart")
+.then(result=>{
+    if(result.data.length>0){
+        cartItemContainer.style.display='block';
+    }
+    else{
+        cartMessage.style.display='block';
+    }
+    result.data.forEach(product=>{
         cartMessage.innerText='';
         const cartItemCard = document.createElement('div');
         cartItemCard.classList.add('cartItemCard');
@@ -25,13 +29,13 @@ else{
 
         const div2=document.createElement('div');
         const p1=document.createElement('p');
-        p1.innerText=product.price;
+        p1.innerText=`Rs. ${product.price}`;
         div2.appendChild(p1);
         cartItemCard.appendChild(div2);
         
         const div3=document.createElement('div');
         const p2=document.createElement('p');
-        p2.innerText=`1`;
+        p2.innerText=product.cartItem.quantity;
         div3.appendChild(p2);
         const button=document.createElement('button');
         button.innerText=`REMOVE`;
@@ -40,7 +44,21 @@ else{
         cartItemCard.appendChild(div3);
 
         cartItemContainer.appendChild(cartItemCard);
-        
-    }
+    })
+})
+.catch(error=>console.log(error))
 
-}
+
+// if(localStorage.length<=0)
+//     cartMessage.innerText='You do not have any items in your cart..........';
+// else{
+//     for(let i=0;i<localStorage.length;i++){
+//         cartItemContainer.style.display='block';
+
+//         const product=JSON.parse(localStorage.getItem(localStorage.key(i)));
+        
+       
+        
+//     }
+
+// }

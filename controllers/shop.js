@@ -2,15 +2,21 @@ const Product = require('../models/product');
 const Cart = require('../models/cart');
 const CartItem = require('../models/cart-item');
 
+let ITEMS_PER_PAGE=4;
+
 exports.getProducts = (req, res, next) => {
-  Product.findAll()
+  const page = +req.query.page || 1;
+  let totalItems;
+
+  Product.count()
+  .then(numProducts=>{
+    totalItems=numProducts;
+    return Product.findAll({limit:ITEMS_PER_PAGE , offset:(page-1)*ITEMS_PER_PAGE})
+  })
   .then((products)=>{
-    // res.render('shop/product-list', {
-    //   prods: products,
-    //   pageTitle: 'All Products',
-    //   path: '/products'
-    // });
-    res.json(products);
+    const detailedProducts = [{total: totalItems},[...products]];
+    res.json(detailedProducts);
+    // res.json({total: totalItems})
   })
   .catch(error => console.log(error))
 };
@@ -48,11 +54,6 @@ exports.getCart = (req, res, next) => {
     return cart.getProducts()
     .then(products => {
       res.json(products);
-      // res.render('shop/cart', {
-      //   path: '/cart',
-      //   pageTitle: 'Your Cart',
-      //   products: products
-      // });
     })
     .catch(err => console.log(err))
   })

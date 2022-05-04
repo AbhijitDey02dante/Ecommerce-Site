@@ -254,7 +254,27 @@ nav{
     padding:2px 5px;
     border-radius: 50%;
 }
-
+#pageNumber{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#pageNumber span{
+    margin:10px;
+    font-size: 1.5rem;
+    padding:10px 15px;
+    border: 2px solid rgb(244, 123, 42);
+    border-radius: 50%;
+    color: rgb(244, 123, 42);
+}
+#pageNumber span:hover,#pageNumber span:active{
+    color:white;
+    background-color: rgb(244, 123, 42);
+}
+#pageNumber span:hover,.btn:hover{
+    cursor: pointer;
+}
 
 
 

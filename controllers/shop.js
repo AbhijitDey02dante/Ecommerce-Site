@@ -1,6 +1,8 @@
 const Product = require('../models/product');
 const Cart = require('../models/cart');
 const CartItem = require('../models/cart-item');
+const Order = require('../models/order');
+const OrderItem = require('../models/order-item');
 
 let ITEMS_PER_PAGE=4;
 
@@ -75,7 +77,7 @@ exports.postCart = (req,res,next) => {
       if (products.length > 0) {
         product = products[0];
       }
-
+ 
       if (product) {
         const oldQuantity = product.cartItem.quantity;
         newQuantity = oldQuantity + 1;
@@ -110,7 +112,7 @@ exports.postCart = (req,res,next) => {
 // }
 
 exports.postCartDelete = (req,res,next) => {
-  const prodID = req.body.productId;
+  const prodID = req.body.id;
   req.user
   .getCart()
   .then(cart => {
@@ -121,8 +123,9 @@ exports.postCartDelete = (req,res,next) => {
     // console.log(product);
     return product.cartItem.destroy();
   })
-  .then(()=>{
-    res.redirect('/cart');
+  .then((result)=>{
+    res.json(result);
+    // res.redirect('/cart');
   })
   .catch(err => console.log(err))
 }
@@ -140,3 +143,29 @@ exports.getCheckout = (req, res, next) => {
     pageTitle: 'Checkout'
   });
 };
+
+exports.postOrder = (req,res,next) => {
+  let orderId;
+  req.user.createOrder()
+  .then(result=>{
+    orderId=result.id;
+    CartItem.findAll()
+    .then(product=>{
+      for(let i=0;i<product.length;i++){
+        const quantity=product[i].quantity;
+        const prodId=product[i].productId;
+        product[i].destroy();
+        OrderItem.create({
+          productId:prodId,
+          quantity:quantity,
+          orderId:result.id
+        })
+        .then(()=>console.log('Ordered'))
+        .catch(error=>console.log(error));
+      }
+
+      res.json({orderId:orderId, success:true})
+  })
+})
+  .catch(error=>console.log(error));
+}

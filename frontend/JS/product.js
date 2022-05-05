@@ -84,6 +84,21 @@ if(itemContainer){
             // cartItem.classList.add('cartItem');
             axios.post("http://localhost:3000/cart",obj)
             .then(()=>{
+                
+                //cart notification update
+                axios.get("http://localhost:3000/cart")
+                .then(result=>{
+                    if(result.data.length>0)
+                    {
+                        cartItemId.forEach(cartItem=>{
+                            cartItem.classList.add('cartItem');
+                            cartItem.innerText=result.data.length;
+                        })
+                    }
+                })
+                .catch(error=>console.log(error));
+
+
                 notificationMessage(`Item ${childElement[1].innerText} has been added to your cart`);
             })
             .catch(error=>console.log(error));

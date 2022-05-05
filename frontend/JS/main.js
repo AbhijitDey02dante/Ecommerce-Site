@@ -7,17 +7,31 @@ const popupDisplay = document.querySelector('.popupContainer');
 const popupClose = document.querySelector('#closePopup');
 const displayMode = document.querySelector('#displayMode');
 // autoText.innerText='0';
+
+
+const cartItemId = document.querySelectorAll('.cartValueId');
+//no. of items
+document.addEventListener('DOMContentLoaded',()=>{
+    axios.get("http://localhost:3000/cart")
+    .then(result=>{
+        if(result.data.length>0)
+        {
+            cartItemId.forEach(cartItem=>{
+                cartItem.classList.add('cartItem');
+                cartItem.innerText=result.data.length;
+            })
+        }
+    })
+    .catch(error=>console.log(error));
+})
+
+
 const carousel = document.querySelector('.carousel');
-const cartItem = document.querySelector('#cartValue');
 
 if(sessionStorage.getItem('mode'))
 {
     document.body.classList.toggle('active');
     displayMode.classList.toggle('active');
-}
-if(localStorage.length>0){
-    cartItem.innerText=localStorage.length;
-    cartItem.classList.add('cartItem');
 }
 
 

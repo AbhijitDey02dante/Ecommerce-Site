@@ -2,20 +2,27 @@
 
 const cartMessage = document.querySelector('#cartMessage');
 const cartItemContainer = document.querySelector('#cartItem');
+const totalElement = document.querySelector('#total h3 span');
+const total = document.querySelector('#total');
+
+let totalPrice=0;
 
 axios.get("http://localhost:3000/cart")
 .then(result=>{
     if(result.data.length>0){
         cartItemContainer.style.display='block';
+        total.style.display='block';
     }
     else{
         cartMessage.style.display='block';
+        cartItemContainer.style.display='none';
+        total.style.display='none';
     }
     result.data.forEach(product=>{
         cartMessage.innerText='';
         const cartItemCard = document.createElement('div');
         cartItemCard.classList.add('cartItemCard');
-        cartItemCard.id=product.id;
+        cartItemCard.id=`item${product.id}`;
 
         const div1 = document.createElement('div');
         const img = document.createElement('img');
@@ -44,21 +51,68 @@ axios.get("http://localhost:3000/cart")
         cartItemCard.appendChild(div3);
 
         cartItemContainer.appendChild(cartItemCard);
+
+        totalPrice=totalPrice+product.cartItem.quantity*product.price;
+        totalElement.innerText='Rs.'+totalPrice;
     })
 })
 .catch(error=>console.log(error))
 
+cartItemContainer.addEventListener('click',(e)=>{
+    if(e.target.className=='btnDelete'){
+        const elements=e.target.parentElement.parentElement.children;
+        const priceOfDelete= +elements[1].firstChild.innerText.replace('Rs. ','');
+        const qtyOfDelete = +elements[2].firstChild.innerText;
+        const id=e.target.parentElement.parentElement.id.replace('item','');
+        axios.post("http://localhost:3000/cart-delete-item",{id:id})
+        .then((result)=>{
+            const delId=document.querySelector(`#item${id}`);
+            if(delId)
+                delId.remove();
 
-// if(localStorage.length<=0)
-//     cartMessage.innerText='You do not have any items in your cart..........';
-// else{
-//     for(let i=0;i<localStorage.length;i++){
-//         cartItemContainer.style.display='block';
+            
+                cartItemId.forEach(cartItem=>{
+                    const cartItemTotal = +cartItem.innerText;
+                    cartItem.innerText= cartItemTotal - 1;
+                })
+            
+            totalPrice=totalPrice-(priceOfDelete*qtyOfDelete);
+            totalElement.innerText='Rs.'+totalPrice;
+            if(totalPrice==0)
+            {
+                cartItemId.forEach(cartItem=>{
+                    cartItem.classList.remove('cartItem');
+                    cartItem.style.display='none';
+                })
+                
+                cartItemContainer.style.display='none';
+                total.style.display='none';
+            }
+        })
+        .catch(error=>console.log(error));
+    }
+})
 
-//         const product=JSON.parse(localStorage.getItem(localStorage.key(i)));
-        
-       
-        
-//     }
 
-// }
+const order = document.querySelector('#order');
+order.addEventListener('click',(e)=>{
+    axios.post('http://localhost:3000/order',{id:200})
+    .then(result=>{
+        const delItems = document.querySelectorAll('.cartItemCard');
+        delItems.forEach(item=>item.remove());
+        cartItemContainer.style.display='none';
+        total.style.display='none';
+
+        //cartValue
+        cartItem.innerText='';
+        cartItem.classList.remove('cartItem');
+        cartItem.style.display='none';
+        //popup
+        const header=document.querySelector('.popupCard h2');
+        const description=document.querySelector('.popupCard p');
+        header.innerText=`Your Order id is ${result.data.orderId}`;
+        description.innerText=`Check out more attractive products from our product menu`;
+        popupDisplay.classList.toggle('active');
+    })
+    .catch(error=>console.log(error));
+})

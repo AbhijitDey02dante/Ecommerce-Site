@@ -78,7 +78,7 @@
 }
 
 
-@media screen and (min-width: 991.60px) {
+@media screen and (min-width: 599px) {
     #cartItem{
         width:50%;
         margin:0 30px;

@@ -130,13 +130,6 @@ exports.postCartDelete = (req,res,next) => {
   .catch(err => console.log(err))
 }
 
-exports.getOrders = (req, res, next) => {
-  res.render('shop/orders', {
-    path: '/orders',
-    pageTitle: 'Your Orders'
-  });
-};
-
 exports.getCheckout = (req, res, next) => {
   res.render('shop/checkout', {
     path: '/checkout',
@@ -169,3 +162,12 @@ exports.postOrder = (req,res,next) => {
 })
   .catch(error=>console.log(error));
 }
+
+exports.getOrders = (req, res, next) => {
+  const userId=req.user.id;
+  Order.findAll({include:Product,where:{userId:userId}})
+  .then(order=>{
+    res.json(order);
+  })
+  .catch(error=>console.log(error));
+};

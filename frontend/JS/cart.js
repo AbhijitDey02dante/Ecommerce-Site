@@ -113,6 +113,12 @@ order.addEventListener('click',(e)=>{
         header.innerText=`Your Order id is ${result.data.orderId}`;
         description.innerText=`Check out more attractive products from our product menu`;
         popupDisplay.classList.toggle('active');
+
+        
+        cartItemId.forEach(cartItem=>{
+            cartItem.classList.remove('cartItem');
+            cartItem.style.display='none';
+        })
     })
     .catch(error=>console.log(error));
 })

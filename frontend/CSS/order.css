@@ -1,0 +1,47 @@
+h2{
+    padding-top: 50px;
+}
+.orderContainer{
+    padding:20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.orderCard{
+    width:100%;
+    box-shadow: 1px 1px 0 black,
+                -1px -1px 0 black;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin:auto;
+}
+.orderCard h2{
+    padding: 0;
+    margin:2px 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.orderCard h3{
+    text-align: center;
+}
+.orderCard div{
+    padding:4px;
+    display: flex;
+    align-items: center;
+}
+.orderCard div img{
+    border-radius: 5px;
+    height:80px;
+    width:80px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+.orderCard div p{
+    margin: 0;
+}
+
+
+@media screen and (min-width: 599px) {   
+    .orderCard{
+        width:45%;
+    }
+}

@@ -12,7 +12,7 @@ form.addEventListener('submit',(e)=>{
         price:price.value,
         description:description.value
     }
-    axios.post("http://35.160.38.67:3000/admin/add-product",obj)
+    axios.post("http://35.160.38.67:3000/add-product",obj)
     .then(()=>console.log('added'))
     .catch((error)=>console.log(error));
 })

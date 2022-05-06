@@ -280,9 +280,48 @@ nav{
 #pageNumber span:hover,.btn:hover{
     cursor: pointer;
 }
+.selectCard{
+    text-align: center;
+    padding:20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.selectCard div{
+    padding: 20px;
+    width:100%;
+    margin: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 0 black;
+    border-bottom: 1px solid white;
+}
+.selectCard div:last-child{
+    border-bottom: none;
+}
+.selectCard div:hover{
+    cursor: pointer;
+}
+.selectCard div span{
+    font-size: 6rem;
+}
 
-
-
+.footer{
+    margin-top: 30px;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+    color: white;
+}
+.footer p a{
+    font-size: 1.5rem;
+    padding: 10px;
+}
+.footer p span{
+    color: grey;
+    font-size: 0.8rem;
+}
+#contact{
+    font-size: 0.8rem;
+}
 @media screen and (min-width: 599px) {
     .itemCard{
         width:45%;
@@ -292,6 +331,16 @@ nav{
     }
     #navButton{
         display: none;
+    }
+    .selectCard div{
+        padding: 10px;
+        width:30%;
+        border-bottom: 1px solid white;
+        box-shadow: 0 1px 0 black;
+    }
+    .selectCard div:last-child{
+        border-bottom: 1px solid white;
+        box-shadow: 0 1px 0 black;
     }
 }
 

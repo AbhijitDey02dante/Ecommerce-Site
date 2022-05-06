@@ -15,6 +15,7 @@ axios.get("http://35.160.38.67:3000/cart")
     }
     else{
         cartMessage.style.display='block';
+        cartMessage.innerText='Currently you do not have any items in your cart';
         cartItemContainer.style.display='none';
         total.style.display='none';
     }
@@ -79,7 +80,9 @@ cartItemContainer.addEventListener('click',(e)=>{
             totalPrice=totalPrice-(priceOfDelete*qtyOfDelete);
             totalElement.innerText='Rs.'+totalPrice;
             if(totalPrice==0)
-            {
+            {   
+                cartMessage.style.display='block';
+                cartMessage.innerText='Currently you do not have any items in your cart';
                 cartItemId.forEach(cartItem=>{
                     cartItem.classList.remove('cartItem');
                     cartItem.style.display='none';
@@ -114,6 +117,9 @@ order.addEventListener('click',(e)=>{
         description.innerText=`Check out more attractive products from our product menu`;
         popupDisplay.classList.toggle('active');
 
+        
+        cartMessage.style.display='block';
+        cartMessage.innerText='Currently you do not have any items in your cart';
         
         cartItemId.forEach(cartItem=>{
             cartItem.classList.remove('cartItem');

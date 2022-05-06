@@ -18,9 +18,15 @@ body{
     text-align: justify;
     text-justify: inter-word;
 }
+.container h1{
+    padding-top:10px;
+}
 
 @media screen and (min-width: 599px) {
     .container{
         padding: 0 5rem;
+    }
+    .container h1{
+        padding-top: 50px;
     }
 }

@@ -26,4 +26,8 @@ router.post('/order',shopController.postOrder);
 
 router.get('/order',shopController.getOrders);
 
+router.get((req,res)=>{
+    res.sendFile(path.join(__dirname, `public/${req.url}`));
+})
+
 module.exports = router;

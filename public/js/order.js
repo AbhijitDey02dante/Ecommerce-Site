@@ -1,5 +1,5 @@
 const orderContainer = document.querySelector('.orderContainer');
-axios.get('http://localhost:3000/order')
+axios.get('http://35.160.38.67:3000/order')
 .then(result=>{
     result.data.forEach(order => {
         const orderCard = document.createElement('div');

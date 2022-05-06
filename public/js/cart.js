@@ -7,7 +7,7 @@ const total = document.querySelector('#total');
 
 let totalPrice=0;
 
-axios.get("http://localhost:3000/cart")
+axios.get("http://35.160.38.67:3000/cart")
 .then(result=>{
     if(result.data.length>0){
         cartItemContainer.style.display='block';
@@ -64,7 +64,7 @@ cartItemContainer.addEventListener('click',(e)=>{
         const priceOfDelete= +elements[1].firstChild.innerText.replace('Rs. ','');
         const qtyOfDelete = +elements[2].firstChild.innerText;
         const id=e.target.parentElement.parentElement.id.replace('item','');
-        axios.post("http://localhost:3000/cart-delete-item",{id:id})
+        axios.post("http://35.160.38.67:3000/cart-delete-item",{id:id})
         .then((result)=>{
             const delId=document.querySelector(`#item${id}`);
             if(delId)
@@ -96,7 +96,7 @@ cartItemContainer.addEventListener('click',(e)=>{
 
 const order = document.querySelector('#order');
 order.addEventListener('click',(e)=>{
-    axios.post('http://localhost:3000/order',{id:200})
+    axios.post('http://35.160.38.67:3000/order',{id:200})
     .then(result=>{
         const delItems = document.querySelectorAll('.cartItemCard');
         delItems.forEach(item=>item.remove());

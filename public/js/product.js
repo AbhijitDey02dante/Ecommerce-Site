@@ -3,7 +3,7 @@ const pageNumber = document.querySelector('#pageNumber');
 let page=1;
 
 document.addEventListener('DOMContentLoaded',()=>{ 
-    axios.get("http://localhost:3000/products?page=1")
+    axios.get("http://35.160.38.67:3000/products?page=1")
     .then(result=>{
         let totalPages=Math.ceil(result.data[0].total / 4);
         for(let i=0;i<totalPages;i++){
@@ -82,11 +82,11 @@ if(itemContainer){
             // localStorage.setItem(prodId,JSON.stringify(obj));
             // cartItem.innerText=localStorage.length;
             // cartItem.classList.add('cartItem');
-            axios.post("http://localhost:3000/cart",obj)
+            axios.post("http://35.160.38.67:3000/cart",obj)
             .then(()=>{
                 
                 //cart notification update
-                axios.get("http://localhost:3000/cart")
+                axios.get("http://35.160.38.67:3000/cart")
                 .then(result=>{
                     if(result.data.length>0)
                     {
@@ -111,7 +111,7 @@ pageNumber.addEventListener('click',(e)=>{
         const currentProducts=document.querySelectorAll('#itemContainer div');
         currentProducts.forEach(element=>element.remove());
         const pageSelected=e.target.innerText;
-        axios.get(`http://localhost:3000/products?page=${pageSelected}`)
+        axios.get(`http://35.160.38.67:3000/products?page=${pageSelected}`)
     .then(result=>{
         result.data[1].forEach(product => {
             const itemCard=document.createElement('div');

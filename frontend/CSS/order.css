@@ -1,9 +1,11 @@
 h2{
-    padding-top: 50px;
+    padding-top: 10px;
 }
 .orderContainer{
     padding:20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 .orderCard{
@@ -12,7 +14,8 @@ h2{
                 -1px -1px 0 black;
     border: 1px solid white;
     border-radius: 5px;
-    margin:auto;
+    margin:0 auto;
+    margin-bottom: 10px;
 }
 .orderCard h2{
     padding: 0;
@@ -29,6 +32,7 @@ h2{
     align-items: center;
 }
 .orderCard div img{
+    background-color: white;
     border-radius: 5px;
     height:80px;
     width:80px;
@@ -43,5 +47,8 @@ h2{
 @media screen and (min-width: 599px) {   
     .orderCard{
         width:45%;
+    }
+    h2{
+        padding-top: 50px;
     }
 }

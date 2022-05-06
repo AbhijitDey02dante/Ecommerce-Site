@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-module.exports = new Sequelize('node-complete','root','Optimusprime',{
+module.exports = new Sequelize(process.env.DB_NAME,process.env.DB_USERNAME,process.env.DB_PASS,{
     dialect:'mysql',
-    host:'localhost'
+    host:process.env.DB_HOST
 });
